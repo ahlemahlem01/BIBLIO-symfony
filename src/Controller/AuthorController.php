@@ -89,7 +89,7 @@ class AuthorController extends AbstractController
                 'f' => $form,
             ]);
         }
-        //  $authors=$repo->orderbyusername() ;   //query order by asc (majuscule) : just for testing
+        //  $authors=$repo->orderbyusername() ;
 
         //  $authors=$repo->searchbyalphabet() ;
         return $this->render('author/showdb.html.twig', [
@@ -104,14 +104,14 @@ class AuthorController extends AbstractController
 //  #[Route('/addauthor', name: 'addauthor')]
 //  public function addauthor(ManagerRegistry $manager,Request $request): Response    //tetsama persistance
 //  {
-//      $em=$manager->getManager() ;     //donner l'acces au fonctionalite (persiste/flush)
+//      $em=$manager->getManager() ;
 
 //      $authors =new Author();
 //      $authors->setUsername("3a58");
 //      $authors->setEmail("3a58@esprit.tn");
 
-//      $em->persist($authors);   //t'hadher requet INSERT
-//      $em->flush() ;             //execute
+//      $em->persist($authors);
+//      $em->flush() ;
 
 //      return new Response("great add") ;
 //  }
@@ -121,17 +121,17 @@ class AuthorController extends AbstractController
     #[Route('/addformauthor', name: 'addformauthor')]
     public function addformauthor(ManagerRegistry $managerRegistry ,Request $request): Response
     {
-        $em=$managerRegistry->getManager() ;             //donner l'acces au fonctionalite (persiste/flush)
+        $em=$managerRegistry->getManager()
 
         $authors =new Author();
-        $form=$this->createForm(AhlemType::class , $authors)   ;     //bch nasn3ou form fiha deux parametre li hiya lform w l'instance mteena
-        $form->handleRequest($request) ;               //les donnes de requete http sont associé au formulaire
+        $form=$this->createForm(AhlemType::class , $authors)   ;
+        $form->handleRequest($request) ;
 
-        if($form->isSubmitted() and $form->isValid()){      //est ce que button qrass aaliha wela et est ceque les champs hatt'hom valid wela
+        if($form->isSubmitted() and $form->isValid()){
 
-            $em->persist($authors);                          //t'hadher requet INSERT
-            $em->flush() ;                                   //execute
-            return $this->redirectToRoute('showdb') ;   //lehna nhott esm route mch rouute (name)
+            $em->persist($authors);
+            $em->flush() ;
+            return $this->redirectToRoute('showdb') ;
 
         }
         return $this->render('author/addformauthor.html.twig', [
@@ -150,10 +150,10 @@ class AuthorController extends AbstractController
         $form=$this->createForm(AhlemType::class,$dataid) ;
         $form->handleRequest($request) ;
 
-        if($form->isSubmitted() and $form->isValid()){      //est ce que button qrass aaliha wela et est ceque les camps hatt'hom valid wela
+        if($form->isSubmitted() and $form->isValid()){
 
-            $em->persist($dataid);                          //t'hadher requet INSERT
-            $em->flush() ;                                   //execute
+            $em->persist($dataid);
+            $em->flush() ;
             return $this->redirectToRoute('showdb') ;
 
         }

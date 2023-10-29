@@ -44,15 +44,14 @@ class BookController extends AbstractController
         $books =new Books();
         //    $books->setPublished(true) ;
 
-        $form=$this->createForm(AlayaType::class , $books)   ;     //bch nasn3ou form fiha deux parametreS li hiya lform w l'instance mteena
+        $form=$this->createForm(AlayaType::class , $books)   ;
 
-        $form->handleRequest($request) ;               //les donnes de requete http sont associé au formulaire
+        $form->handleRequest($request) ;
 
-        if($form->isSubmitted() and $form->isValid()){      //est ce que button qrass aaliha wela et est ceque les champs hatt'hom valid wela
-
-            $em->persist($books);                          //t'hadher requet INSERT
-            $em->flush() ;                                   //execute
-            return $this->redirectToRoute('showbook') ;   //lehna nhott esm route mch rouute (name)
+        if($form->isSubmitted() and $form->isValid()){
+            $em->persist($books);
+            $em->flush() ;
+            return $this->redirectToRoute('showbook') ;
 
         }
         return $this->renderForm('books/addbook.html.twig', [
@@ -73,10 +72,9 @@ class BookController extends AbstractController
         $form=$this->createForm(AlayaType::class,$dataref) ;
         $form->handleRequest($request) ;
 
-        if($form->isSubmitted() and $form->isValid()){      //est ce que button qrass aaliha wela et est ceque les camps hatt'hom valid wela
-
-            $em->persist($dataref);                          //t'hadher requet INSERT
-            $em->flush() ;                                   //execute
+        if($form->isSubmitted() and $form->isValid()){
+            $em->persist($dataref);
+            $em->flush() ;                                 
             return $this->redirectToRoute('showbook') ;
 
         }
