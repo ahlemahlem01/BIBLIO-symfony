@@ -1,0 +1,66 @@
+
+{# {{ form(f) }} #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BIBLIO</title>
+    <style>
+        .mon-bouton {
+            position: absolute;
+            top: 380px;
+            left: 540px;
+            color : green;
+            font-size: 36px;
+        }
+
+         td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body >
+<h1 style="color:red"> List Of Authors</h1>
+
+<h2> <a   href="{{path('addformauthor',)}}">  </h2>
+        <button type="button" class="mon-bouton">add</button>
+        </a>
+
+<table border='3'>
+        <tr>
+                <td >id</td>
+                <td>username</td>
+                <td >email</td>
+                                <td >nbrlivre</td>
+                <td > edit</td>
+                <td> delete</td>
+                <td> showbook</td>
+
+        </tr>
+          {% for i in author %}
+        <tr >
+                <td>{{i.id}}</td>
+                <td>{{i.username |upper}}</td>
+                <td>{{i.email}}</td>
+                                  <td>{{i.nbrlivre}}</td>
+
+                <td><a href="{{path('editauthor',{'id':i.id})}}">edit</a></td>
+                <td><a href="{{path('deleteauthor',{'id':i.id})}}">delete</a></td>
+                <td><a href="{{path('showbook',{'id':i.id})}}">show</a></td>
+
+
+
+        </tr>
+
+    {% endfor %}
+   
+</table>
+{{ form_start(f) }}
+    {{ form_widget(f) }}
+{{ form_end(f) }}
+</body>
+</html>
